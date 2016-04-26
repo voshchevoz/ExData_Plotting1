@@ -1,3 +1,16 @@
+# The script does not have any prerequisites and is reentrable:
+# one can run it several time with the stable and reproducible results.
+# All required files will be downloaded automatically.
+
+# This scripts does not utilize any 3rd party R packages: only base R
+
+# This scripts does the following:
+# 1. Registeres readData() function that will download and unzip "Individual
+#    household electric power consumption Data Set"
+# 2. The function will merge "Date" amd time "Time" variables to "datetime"
+#    variable of POSIXct type
+     
+
 readData <- function() {
   fileUrl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
   fileLocalPath <- "./data/Power_consumption.zip"
@@ -37,7 +50,7 @@ readData <- function() {
   
   # aggregate date and time columns to POSIXct,
   # we do not care about TZ here
-  data['datetime'] <- as.POSIXct(paste(data$Date, data$Time),
+  data["datetime"] <- as.POSIXct(paste(data$Date, data$Time),
                                   "%d/%m/%Y %H:%M:%S", tz = "")
 
   data
